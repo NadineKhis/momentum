@@ -16,9 +16,22 @@ body {
   color: #000000;
 }
 
+.day {
+  font-size: 6rem;
+}
+
 .time {
   font-size: 8rem;
 }
+body > h1 > span.name {
+  display: inline-block;
+  min-width: 10px;
+}
+
+/*.name span {*/
+/*  display: inline-block;*/
+/*  min-width: 10px;*/
+/*}*/
 
 h1 {
   margin-bottom: 3rem;
