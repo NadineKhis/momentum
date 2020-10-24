@@ -9,10 +9,30 @@ const day = document.querySelector('.day'),
 const images = ['01.jpg', '02.jpg', '03.jpg', '04.jpg', '05.jpg', '06.jpg', '07.jpg',
     '08.jpg', '09.jpg', '10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg',
     '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg'];
+let todayBg = []
 
-let i = 0;
+let randIndex = Math.floor(Math.random() * 21);
+console.log(randIndex)
+console.log(randIndex % images.length)
 
-// let i = Math.floor(Math.random() * 21);
+function todayList() {
+    for (let i = 0; i < 6; i++) {
+        todayBg.push(getImage('./momentum/assets/images/night/'))
+    }
+    for (let i = 0; i < 6; i++) {
+        todayBg.push(getImage('./momentum/assets/images/morning/'))
+    }
+    for (let i = 0; i < 6; i++) {
+        todayBg.push(getImage('./momentum/assets/images/day/'))
+    }
+    for (let i = 0; i < 6; i++) {
+        todayBg.push(getImage('./momentum/assets/images/evening/'))
+    }
+}
+
+todayList();
+
+console.log(todayBg)
 
 function viewBgImage(data) {
     const body = document.querySelector('body');
@@ -25,25 +45,27 @@ function viewBgImage(data) {
 }
 
 function getImage(base) {
-    const index = i % images.length;
-    const imageSrc = base + images[index];
-    viewBgImage(imageSrc);
-    i++;
+    const index = randIndex % images.length;
+    const imageSrc = (base + images[index]).toString();
+    console.log(imageSrc)
+    randIndex++;
+    return imageSrc
 }
 
-function refreshImg() {
+const btn = document.getElementById('refresh_btn');
+btn.addEventListener('click', nextImg);
+let _today = new Date(),
+    fakeHour = _today.getHours();
 
+// Next Background Image Button
+function nextImg() {
+    if (fakeHour < 23) {
+        fakeHour = fakeHour + 1
+    } else {
+        fakeHour = 0
+    }
+    viewBgImage(`${todayBg[fakeHour]}`);
 }
-
-const btn = document.querySelector('.btn');
-btn.addEventListener('click', refreshImg);
-
-// Options
-// function generatorBg() {
-//
-//     let i = Math.floor(Math.random() * 21);
-//     for () {}
-// }
 
 // Show Day
 function showDay() {
@@ -85,31 +107,24 @@ function addZero(n) {
 function setBgGreet() {
     let today = new Date(),
         hour = today.getHours();
-
     if (hour < 6) {
         // Night
-        document.body.style.backgroundImage =
-
-            "url(./momentum/assets/images/night/01.jpg)";
+        viewBgImage(`${todayBg[hour]}`)
         greeting.textContent = 'Good Night, ';
         document.body.style.color = 'white';
     } else if (hour < 12) {
         // Morning
-        document.body.style.backgroundImage =
-            "url(./momentum/assets/images/morning/01.jpg)";
+        viewBgImage(`${todayBg[hour]}`)
         greeting.textContent = 'Good Morning, ';
     } else if (hour < 18) {
         // Afternoon
-        document.body.style.backgroundImage =
-            "url(./momentum/assets/images/day/01.jpg)";
+        viewBgImage(`${todayBg[hour]}`)
         greeting.textContent = 'Good Afternoon, ';
     } else {
         // Evening
-        getImage("./assets/images/evening/");
-        document.body.style.backgroundImage =
-        "url(./momentum/assets/images/evening/01.jpg)";
+        viewBgImage(`${todayBg[hour]}`)
         greeting.textContent = 'Good Evening, ';
-        // document.body.style.color = 'white';
+        document.body.style.color = 'white';
     }
 }
 
@@ -128,8 +143,6 @@ function setName(e) {
         localStorage.setItem('name', e.target.innerText);
     }
     if (e.type === 'keypress') {
-        // Make sure enter is pressed
-        // if (e.which === 13 || e.keyCode === 13) {
         if (e.code === 'Enter' || e.code === 'NumpadEnter') {
             localStorage.setItem('name', e.target.innerText);
             name.blur();
@@ -159,11 +172,9 @@ function setFocus(e) {
         localStorage.setItem('focus', e.target.innerText);
     }
     if (e.type === 'keypress') {
-        // Make sure enter is pressed
-        // if (e.which === 13 || e.keyCode === 13) {
         if (e.code === 'Enter' || e.code === 'NumpadEnter') {
             localStorage.setItem('focus', e.target.innerText);
-            name.blur();
+            focus.blur();
         }
     } else if (e.type === 'click') {
         e.target.innerText = '';
@@ -180,8 +191,7 @@ name.addEventListener('blur', setName);
 name.addEventListener('click', setName);
 focus.addEventListener('keypress', setFocus);
 focus.addEventListener('blur', setFocus);
-focus.addEventListener('click', setName);
-
+focus.addEventListener('click', setFocus);
 
 // Run
 showDay();
