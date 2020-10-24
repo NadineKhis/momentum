@@ -52,7 +52,7 @@ function getImage(base) {
     return imageSrc
 }
 
-const btn = document.getElementById('refresh_btn');
+const btn = document.getElementById('nextBg_btn');
 btn.addEventListener('click', nextImg);
 let _today = new Date(),
     fakeHour = _today.getHours();
@@ -186,6 +186,22 @@ function setFocus(e) {
     }
 }
 
+// CHANGE QUOTE
+const blockquote = document.getElementById('blockquote');
+const figcaption = document.getElementById('figcaption');
+const quote_btn = document.getElementById('quote_btn');
+
+async function getQuote() {
+    const url = `https://programming-quotes-api.herokuapp.com/quotes`;
+    const res = await fetch(url);
+    const data = await res.json();
+    let ind = Math.floor(Math.random() * 500)
+    blockquote.textContent = data[ind].en;
+    figcaption.textContent = data[ind].author;
+}
+
+document.addEventListener('DOMContentLoaded', getQuote);
+quote_btn.addEventListener('click', getQuote);
 name.addEventListener('keypress', setName);
 name.addEventListener('blur', setName);
 name.addEventListener('click', setName);
