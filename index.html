@@ -9,6 +9,8 @@
   <title>momentum</title>
 </head>
 <body>
+
+
 <div class="wrapper">
 
   <div class="weather-container">
@@ -16,7 +18,7 @@
       <i class="weather-icon owf"></i>
       <div class="temperature"></div>
       <div class="city" contenteditable="true"></div>
-
+      <div class="error-city"></div>
     </div>
     <div class="right">
       <div class="weather-description"></div>
@@ -24,9 +26,8 @@
       <div class="wetness"></div>
     </div>
 
-    <div class="error-city"></div>
-  </div>
 
+  </div>
 
   <div class="main-wrapper">
     <div class="day"></div>
@@ -37,19 +38,31 @@
     </h1>
     <h2>What Is Your Focus For Today?</h2>
     <h2 class="focus" contenteditable="true"></h2>
-    <button id="nextBg_btn" class="btn"></button>
+
+  </div>
+  <div class="btn-container">
+    <button id="nextBg_btn" class="btn">
+      <img src="./momentum/assets/icons/button_bg.png" alt="">
+    </button>
+    <button id="quote_btn" class="quote-btn">
+      <img src="./momentum/assets/icons/button_quote.png" alt="">
+    </button>
   </div>
 
   <div class="quote-wrapper">
+
     <figure class="quote">
       <blockquote id="blockquote">
       </blockquote>
       <figcaption id="figcaption">
       </figcaption>
     </figure>
-    <button id="quote_btn" class="quote-btn"></button>
+
   </div>
 
+</div>
+<div class="blur">
+  <img src="momentum/assets/images/blur.png" alt="">
 </div>
 <script src="momentum/script.js"></script>
 </body>

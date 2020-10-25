@@ -110,7 +110,6 @@ function setBgGreet() {
         // Night
         viewBgImage(`${todayBg[hour]}`)
         greeting.textContent = 'Good Night, ';
-        document.body.style.color = 'white';
     } else if (hour < 12) {
         // Morning
         viewBgImage(`${todayBg[hour]}`)
@@ -123,7 +122,6 @@ function setBgGreet() {
         // Evening
         viewBgImage(`${todayBg[hour]}`)
         greeting.textContent = 'Good Evening, ';
-        document.body.style.color = 'white';
     }
 }
 
@@ -239,7 +237,7 @@ function setCity(event) {
 
 async function getWeather() {
     try {
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=ru&appid=7439863a453c1dcd15097731949f40a1&units=metric`;
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=en&appid=7439863a453c1dcd15097731949f40a1&units=metric`;
         const res = await fetch(url);
         const data = await res.json()
 

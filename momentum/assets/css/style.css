@@ -6,6 +6,7 @@
 
 body {
   font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,20 +14,38 @@ body {
   text-align: center;
   height: 100vh;
   background-size: cover;
-  color: #000000;
+  background: no-repeat;
+  text-shadow: #1f1f1f 5px 2px 4px;
+  color: #fff;
 }
 
 .wrapper {
   display: grid;
+  place-items: center;
+  z-index: 1000
+}
 
+.blur {
+  /*background-image: url("../images/blur.png");*/
+  background-repeat: no-repeat;
+  background-size: inherit;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  opacity: .7;
+}
+
+.blur img {
+  height: 100%;
+  width: 100%;
 }
 
 .day {
-  font-size: 4rem;
+  font-size: 2rem;
 }
 
 .time {
-  font-size: 8rem;
+  font-size: 6rem;
 }
 
 body > div:nth-child(1) > h1 > span.name {
@@ -34,14 +53,21 @@ body > div:nth-child(1) > h1 > span.name {
   min-width: 10px;
 }
 
+.name {
+  display: inline-block;
+  min-width: 9rem;
+}
 
 h1 {
-  margin-bottom: 3rem;
+  max-width: 60rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
 }
 
 h2 {
   margin-bottom: 0.5rem;
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
 /*WEATHER BLOCK */
@@ -50,29 +76,48 @@ h2 {
   display: flex;
   gap: 1rem;
   max-width: 25rem;
+  /*position: fixed;*/
+  top: 0;
+  right: 0;
 }
 
-.weather-icon {
-
+.left {
+  width: 10rem;
+  height: 5rem;
 }
 
+.right {
+  width: 10rem;
+  height: 5rem;
+}
 
+.error-city {
+  color: red;
+}
 
 
 /*CHANGE  BACKGROUND BUTTON*/
+
+.btn-container {
+  display: flex;
+
+}
+
+.btn-container img {
+  width: 9rem;
+}
+
 .btn {
-  width: 60px;
-  height: 60px;
+  max-height: 0;
   border: 0;
-  background: url("https://www.pngarts.com/files/7/Update-Button-PNG-Image.png");
   background-size: contain;
   background-repeat: no-repeat;
   filter: grayscale(1);
-  margin: 10px;
 }
 
 .btn:hover {
-  filter: grayscale(.8);
+  filter: grayscale(.3);
+  cursor: pointer;
 }
 
 .btn:active,
@@ -85,11 +130,15 @@ h2 {
 }
 
 /*CHANGE QUOTE BUTTON */
+.quote-wrapper {
+  max-width: 60rem;
+  margin-top: 1rem;
+}
 
 .quote {
+  height: 10rem;
   font: 1.2rem Georgia, serif;
   margin: 0;
-  background: blueviolet;
   padding: 1em;
   border-radius: 1em;
 }
@@ -104,18 +153,20 @@ h2 {
 }
 
 .quote-btn {
-  width: 60px;
-  height: 60px;
-  border: 0;
-  border-radius: 50%;
-  background-image: url("https://www.pngarts.com/files/7/Update-Button-PNG-Image.png");
-  background-size: contain;
-  background-repeat: no-repeat;
+  border: none;
+  position: relative;
+  /*width: 0;*/
+  height: 0;
   filter: grayscale(.8);
-  margin: 10px;
+}
+
+.quote-btn img {
+  /*max-width: 10rem;*/
+  /*max-height: 5rem;*/
 }
 
 .quote-btn:hover {
+  cursor: pointer;
   filter: grayscale(.2);
 }
 
@@ -130,8 +181,28 @@ h2 {
 
 /*MEDIA QUERIES*/
 
-@media (max-width: 700px) {
-  .time {
-    font-size: 6rem;
+@media (max-width: 500px) {
+
+  html {
+    overflow-x: hidden;
   }
+
+  .quote-wrapper {
+    max-width: 30rem;
+    height: 15rem;
+  }
+
+  .time {
+    font-size: 3rem;
+  }
+
+  .name {
+    min-width: 3rem;
+  }
+
+  h1 {
+    font-size: 1.2rem;
+
+  }
+
 }
