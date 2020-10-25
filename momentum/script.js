@@ -5,7 +5,6 @@ const day = document.querySelector('.day'),
     name = document.querySelector('.name'),
     focus = document.querySelector('.focus');
 
-
 const images = ['01.jpg', '02.jpg', '03.jpg', '04.jpg', '05.jpg', '06.jpg', '07.jpg',
     '08.jpg', '09.jpg', '10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg',
     '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg'];
@@ -200,6 +199,68 @@ async function getQuote() {
     figcaption.textContent = data[ind].author;
 }
 
+// WEATHER WIDGET
+const city = document.querySelector('.city');
+const error = document.querySelector('.error-city');
+const weatherIcon = document.querySelector('.weather-icon');
+const temperature = document.querySelector('.temperature');
+const weatherDescription = document.querySelector('.weather-description');
+const wind = document.querySelector('.wind');
+const wetness = document.querySelector('.wetness')
+
+
+function getCity() {
+    if (localStorage.getItem('city') === null) {
+        city.textContent = 'Минск';
+    } else {
+        city.textContent = localStorage.getItem('city');
+    }
+}
+
+function setCity(event) {
+    if (localStorage.getItem('city') === null) {
+        localStorage.setItem('city', event.target.innerText);
+    }
+    if (event.type === 'keypress') {
+        if (event.code === 'Enter' || event.code === 'NumpadEnter') {
+        localStorage.setItem('city', event.target.innerText)
+        city.blur();
+        getWeather();
+        }
+    } else if (event.type === 'click') {
+        event.target.innerText = '';
+    } else {
+        if (event.target.innerText === '') {
+            event.target.innerText = localStorage.getItem('city');
+        }
+        localStorage.setItem('city', event.target.innerText);
+    }
+}
+
+async function getWeather() {
+    try {
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=ru&appid=7439863a453c1dcd15097731949f40a1&units=metric`;
+        const res = await fetch(url);
+        const data = await res.json()
+
+        weatherIcon.className = 'weather-icon owf';
+        weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+        temperature.textContent = `${data.main.temp.toFixed(0)}°C`;
+        weatherDescription.textContent = data.weather[0].description;
+        wind.textContent = `Wind speed: ${data.wind.speed} m/sec`;
+        wetness.textContent = `Humidity: ${data.main.humidity}%`;
+
+        error.innerText = '';
+    } catch (e) {
+        error.innerText = 'city is not found';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', getWeather);
+city.addEventListener('keypress', setCity);
+city.addEventListener('click', setCity);
+city.addEventListener('blur', setCity)
+
 document.addEventListener('DOMContentLoaded', getQuote);
 quote_btn.addEventListener('click', getQuote);
 name.addEventListener('keypress', setName);
@@ -213,5 +274,7 @@ focus.addEventListener('click', setFocus);
 showDay();
 showTime();
 setBgGreet();
+getCity();
 getName();
 getFocus();
+getWeather()

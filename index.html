@@ -4,30 +4,53 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="momentum/style.css" />
+  <link rel="stylesheet" href="momentum/assets/css/owfont-regular.css">
+  <link rel="stylesheet" href="momentum/assets/css/style.css" />
   <title>momentum</title>
 </head>
 <body>
-<div>
-  <div class="day"></div>
-  <time class="time"></time>
-  <h1>
-    <span class="greeting"></span>
-    <span class="name" contenteditable="true"></span>
-  </h1>
-  <h2>What Is Your Focus For Today?</h2>
-  <h2 class="focus" contenteditable="true"></h2>
-  <button id="nextBg_btn" class="btn"></button>
+<div class="wrapper">
 
-  <figure class="quote">
-    <blockquote id="blockquote">
-    </blockquote>
-    <figcaption id="figcaption">
-    </figcaption>
-  </figure>
-  <button id="quote_btn" class="quote-btn"></button>
+  <div class="weather-container">
+    <div class="left">
+      <i class="weather-icon owf"></i>
+      <div class="temperature"></div>
+      <div class="city" contenteditable="true"></div>
 
-  <script src="momentum/script.js"></script>
+    </div>
+    <div class="right">
+      <div class="weather-description"></div>
+      <div class="wind"></div>
+      <div class="wetness"></div>
+    </div>
+
+    <div class="error-city"></div>
+  </div>
+
+
+  <div class="main-wrapper">
+    <div class="day"></div>
+    <time class="time"></time>
+    <h1>
+      <span class="greeting"></span>
+      <span class="name" contenteditable="true"></span>
+    </h1>
+    <h2>What Is Your Focus For Today?</h2>
+    <h2 class="focus" contenteditable="true"></h2>
+    <button id="nextBg_btn" class="btn"></button>
+  </div>
+
+  <div class="quote-wrapper">
+    <figure class="quote">
+      <blockquote id="blockquote">
+      </blockquote>
+      <figcaption id="figcaption">
+      </figcaption>
+    </figure>
+    <button id="quote_btn" class="quote-btn"></button>
+  </div>
+
 </div>
+<script src="momentum/script.js"></script>
 </body>
 </html>
