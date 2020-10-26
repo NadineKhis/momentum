@@ -11,8 +11,6 @@ const images = ['01.jpg', '02.jpg', '03.jpg', '04.jpg', '05.jpg', '06.jpg', '07.
 let todayBg = []
 
 let randIndex = Math.floor(Math.random() * 21);
-console.log(randIndex)
-console.log(randIndex % images.length)
 
 function todayList() {
     for (let i = 0; i < 6; i++) {
@@ -31,7 +29,7 @@ function todayList() {
 
 todayList();
 
-console.log(todayBg)
+
 
 function viewBgImage(data) {
     const body = document.querySelector('body');
@@ -46,7 +44,6 @@ function viewBgImage(data) {
 function getImage(base) {
     const index = randIndex % images.length;
     const imageSrc = (base + images[index]).toString();
-    console.log(imageSrc)
     randIndex++;
     return imageSrc
 }
