@@ -17,6 +17,7 @@ body {
   background: no-repeat;
   text-shadow: #1f1f1f 5px 2px 4px;
   color: #fff;
+  transition: 600ms;
 }
 
 .wrapper {
@@ -26,7 +27,6 @@ body {
 }
 
 .blur {
-  /*background-image: url("../images/blur.png");*/
   background-repeat: no-repeat;
   background-size: inherit;
   height: 100%;
@@ -46,6 +46,7 @@ body {
 
 .time {
   font-size: 6rem;
+  font-family: monospace;
 }
 
 body > div:nth-child(1) > h1 > span.name {
@@ -158,11 +159,6 @@ h2 {
   /*width: 0;*/
   height: 0;
   filter: grayscale(.8);
-}
-
-.quote-btn img {
-  /*max-width: 10rem;*/
-  /*max-height: 5rem;*/
 }
 
 .quote-btn:hover {
